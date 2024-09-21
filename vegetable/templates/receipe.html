@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe App with Django</title>
+</head>
+
+<body>
+    <h1>Submit a New Recipe</h1>
+    
+    <form method="POST" enctype="multipart/form-data">
+        <!-- CSRF token for Django forms -->
+        {% csrf_token %}
+
+        <!-- Recipe Name Input -->
+        <label for="rec_name">Recipe Name:</label>
+        <input type="text" id="rec_name" name="rec_name" required><br><br>
+
+        <!-- Recipe Description Input -->
+        <label for="rec_desc">Recipe Description:</label>
+        <textarea id="rec_desc" name="rec_desc" rows="4" required></textarea><br><br>
+
+        <!-- Recipe Image Upload -->
+        <label for="rec_image">Upload Recipe Image:</label>
+        <input type="file" id="rec_images" name="rec_images" accept=".jpg" required><br><br>
+
+        <!-- Submit Button -->
+        <button type="submit">Submit Recipe</button>
+    </form>
+
+
+{% for receipe in receipes %}
+<h1>{{receipe.rec_name}}</h1>
+<h1>{{receipe.rec_desc}}</h1>
+<h1>{{receipe.rec_images}}</h1>
+<img src="/media/{{receipe.rec_images}}">
+<a href="/delete-receipe/{{receipe.id}}">delete</a>
+{% endfor%}
+</body>
+</html>
